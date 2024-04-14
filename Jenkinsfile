@@ -41,7 +41,7 @@ pipeline {
         }
         stage('Send Slack Message') {
             steps {
-                slackSend(channel: '#felix_ip1', color: 'good', message: "Build ID: ${BUILD_ID}\nSite uploaded to Render : [Link](https://gallery-devops-ucmt.onrender.com/)")
+                slackSend(channel: '#felix_ip1', color: 'good', message: "Build ID: ${BUILD_ID}\nSite is being uploaded to Render : [Link](https://gallery-devops-ucmt.onrender.com/)")
             
             }
         }
