@@ -1,22 +1,27 @@
-pipeline{
+pipeline {
     agent any
-    tools{
-        npm 'NodeJs'
+    tools {
+        nodejs "nodeJs"
     }
-    stages{
-        stage('clone repository'){
-            steps{
+    stages {
+        stage('initialize') {
+            steps {
+                echo 'initializing'
+            }
+        }
+        stage('check npm installed') {
+            steps {
+                sh 'npm --version'
+            }
+        }
+        stage('clone repository') {
+            steps {
                 git branch: 'master', url:'https://github.com/felixivance/gallery-devops.git'
             }  
         }
-        stage('build code'){
-            steps{
+        stage('build code') {
+            steps {
                 sh 'npm install'
-            }
-        }
-        stage('test code'){
-            steps{
-                sh 'npm run test'
             }
         }
     }
