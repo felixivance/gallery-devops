@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('initialize') {
             steps {
-                echo 'initializing the build pipeline.'
+                echo 'initializing the build pipeline..'
             }
         }
         stage('check npm installed version') {
