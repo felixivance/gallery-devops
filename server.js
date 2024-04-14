@@ -39,7 +39,7 @@ app.use(express.json());
 app.use("/", index);
 app.use("/image", image);
 
-const PORT = process.env.PORT || 6000; // changed from 5000 to 6000
+const PORT = process.env.PORT || 8000; // changed from 5000 to 6000
 app.listen(PORT, () => {
   console.log(`Server is listening at http://localhost:${PORT}`);
 });
