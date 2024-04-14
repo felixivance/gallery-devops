@@ -7,7 +7,31 @@ const path = require("path");
 let index = require("./routes/index");
 let image = require("./routes/image");
 
+// Initializing the app
+const app = express();
+
 // connecting the database
+
+const MONGODB_URI =
+  process.env.MONGODB_URI || config.mongoURI[app.settings.env];
+mongoose.connect(
+  MONGODB_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(`Connected to Database: ${MONGODB_URI}`);
+    }
+  }
+);
+
+// test if the database has connected successfully
+// let db = mongoose.connection;
+// db.once('open', ()=>{
+//     console.log('Database connected successfully')
+// })
+
 // let mongodb_url = "mongodb://localhost:27017/";
 // get the db name from the _config.js file
 
@@ -32,9 +56,6 @@ db.once("open", () => {
   console.log("Database connected successfully");
 });
 
-// Initializing the app
-const app = express();
-
 // View Engine
 app.set("view engine", "ejs");
 
@@ -47,6 +68,10 @@ app.use(express.json());
 app.use("/", index);
 app.use("/image", image);
 
+app.use("/", index);
+app.use("/image", image);
+
+module.exports = app;
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`Server is listening at http://localhost:${PORT}`);
