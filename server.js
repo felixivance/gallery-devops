@@ -8,7 +8,13 @@ let index = require("./routes/index");
 let image = require("./routes/image");
 
 // connecting the database
-let mongodb_url = "mongodb://localhost:27017/";
+// let mongodb_url = "mongodb://localhost:27017/";
+// get the db name from the _config.js file
+
+//get mongodb_url from the _config.js file
+let config = require("./_config");
+let mongodb_url = config.mongoURI.production;
+
 let dbName = "gallery-devops";
 mongoose.connect(
   `${mongodb_url}${dbName}`,
