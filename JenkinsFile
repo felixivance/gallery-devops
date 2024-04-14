@@ -9,7 +9,7 @@ pipeline {
                 echo 'initializing the build pipeline'
             }
         }
-        stage('check npm installed') {
+        stage('check npm installed version') {
             steps {
                 sh 'npm --version'
             }
